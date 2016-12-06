@@ -15,7 +15,7 @@ class App extends Component {
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={12} offset={6}>
             <p className="App-intro">
               To get started, edit <code>src/App.js</code> and save to reload.
             </p>
