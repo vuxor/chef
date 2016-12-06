@@ -11,8 +11,7 @@ class App extends Component {
         <Row>
           <Col span={24}>
             <div className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h2>Welcome to React!</h2>
+              <h2>Do your kitchen magic!</h2>
             </div>
           </Col>
         </Row>
