@@ -16,7 +16,7 @@ class DynamicFieldSet extends React.Component {
     const { form } = this.props;
     // can use data-binding to get
     const keys = form.getFieldValue('keys');
-    // We need at least one passenger
+    // We need at least one ingredient 
     if (keys.length === 1) {
       return;
     }
@@ -40,14 +40,19 @@ class DynamicFieldSet extends React.Component {
     });
   }
 
+  addNewRecipe(e) {
+    e.preventDefault();
+    console.log('form submited');
+  }
+
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
-      labelCol: { span: 4 },
-      wrapperCol: { span: 20 },
+      labelCol: { span: 7 },
+      wrapperCol: { span: 17 },
     };
     const formItemLayoutWithOutLabel = {
-      wrapperCol: { span: 20, offset: 4 },
+      wrapperCol: { span: 17, offset: 7 },
     };
 
     const keys = getFieldValue('keys');
@@ -79,12 +84,18 @@ class DynamicFieldSet extends React.Component {
       );
     });
     return (
-      <Form horizontal>
+      <Form horizontal className="align-left" onSubmit={this.addNewRecipe}>
         {formItems}
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
             <Icon type="plus" /> Add
           </Button>
+        </FormItem>
+        <FormItem label={'Tell us how to prepare it'} {...formItemLayout}>
+          <Input type="textarea" rows={4} />
+        </FormItem>
+        <FormItem {...formItemLayoutWithOutLabel}>
+          <Button type="primary" htmlType="submit">Cook it</Button>
         </FormItem>
       </Form>
     );
