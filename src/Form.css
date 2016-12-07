@@ -1,3 +1,6 @@
+.align-left {
+  text-align: left;
+}
 .dynamic-delete-button {
   cursor: pointer;
   position: relative;
