@@ -43,6 +43,7 @@ class DynamicFieldSet extends React.Component {
   addNewRecipe(e) {
     e.preventDefault();
     console.log('form submited');
+    console.log(this.props.form.getFieldsValue());
   }
 
   render() {
@@ -84,7 +85,7 @@ class DynamicFieldSet extends React.Component {
       );
     });
     return (
-      <Form horizontal className="align-left" onSubmit={this.addNewRecipe}>
+      <Form horizontal className="align-left" onSubmit={this.addNewRecipe.bind(this)}>
         {formItems}
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
@@ -92,7 +93,16 @@ class DynamicFieldSet extends React.Component {
           </Button>
         </FormItem>
         <FormItem label={'Tell us how to prepare it'} {...formItemLayout}>
-          <Input type="textarea" rows={4} />
+          {getFieldDecorator('directions', {
+            validateTrigger: ['onChange', 'onBlur'],
+            rules: [{
+              required: true,
+              whitespace: true,
+              message: "Please input directions how to cook it",
+            }],
+          })(
+            <Input type="textarea" rows={4} />
+          )}
         </FormItem>
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="primary" htmlType="submit">Cook it</Button>
