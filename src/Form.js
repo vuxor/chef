@@ -42,8 +42,13 @@ class DynamicFieldSet extends React.Component {
 
   addNewRecipe(e) {
     e.preventDefault();
-    console.log('form submited');
-    console.log(this.props.form.getFieldsValue());
+    //console.log('form submited');
+    //console.log(this.props.form.getFieldsValue());
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
   }
 
   render() {
@@ -62,7 +67,7 @@ class DynamicFieldSet extends React.Component {
         <FormItem
           {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
           label={index === 0 ? 'Ingredients' : ''}
-          required={false}
+          required={true}
           key={k}
         >
           {getFieldDecorator(`names-${k}`, {
