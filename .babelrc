@@ -1,4 +1,4 @@
 {
-  "presets": ["react-app"],
-  "plugins": [["import", { libraryName: "antd", style: "css" }]]
+  "presets": ["react-app", "es2015", "stage-1"],
+  "plugins": [["import", { libraryName: "antd", style: "css" }],"transform-decorators-legacy"]
 }
