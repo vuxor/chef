@@ -3,6 +3,7 @@ import { Row, Col } from 'antd';
 
 import { WrappedDynamicFieldSet } from './Form';
 import AllRecipes from './AllRecipes';
+import recipesStore from './RecipesStore';
 import './App.css';
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col span={12}>
-            <AllRecipes />
+            <AllRecipes recipesStore={recipesStore} />
           </Col>
         </Row>
       </div>
