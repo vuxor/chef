@@ -19,7 +19,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col span={12} offset={6}>
-            <WrappedDynamicFieldSet />
+            <WrappedDynamicFieldSet recipesStore={recipesStore} />
           </Col>
         </Row>
         <Row>
