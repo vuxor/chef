@@ -47,6 +47,7 @@ class DynamicFieldSet extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.recipesStore.recipes.push(values);
       }
     });
   }
@@ -70,7 +71,7 @@ class DynamicFieldSet extends React.Component {
           required={true}
           key={k}
         >
-          {getFieldDecorator(`names-${k}`, {
+          {getFieldDecorator(`ingredient-${k}`, {
             validateTrigger: ['onChange', 'onBlur'],
             rules: [{
               required: true,
