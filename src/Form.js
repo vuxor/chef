@@ -44,10 +44,22 @@ class DynamicFieldSet extends React.Component {
     e.preventDefault();
     //console.log('form submited');
     //console.log(this.props.form.getFieldsValue());
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err, recipe) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        this.props.recipesStore.recipes.push(values);
+        let keys = Object.keys(recipe);
+        let ingKeys = keys.filter((key) => (
+          /^ingredient/.test(key) 
+        ));
+        let ingArray = [];
+        for (let key of ingKeys) {
+          //console.log(key);
+          ingArray.push(recipe[key])
+        }
+        let recipeObj = {};
+        recipeObj.ingredients = ingArray;
+        recipeObj.name = recipe.name;
+        recipeObj.directions = recipe.directions;
+        this.props.recipesStore.recipes.push(recipeObj);
       }
     });
   }
