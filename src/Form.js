@@ -92,6 +92,18 @@ class DynamicFieldSet extends React.Component {
     });
     return (
       <Form horizontal className="align-left" onSubmit={this.addNewRecipe.bind(this)}>
+        <FormItem label={ 'Name' } { ...formItemLayout } >
+          {getFieldDecorator('name', {
+            validateTrigger: ['onChange', 'onBlur'],
+            rules: [{
+              required: true,
+              whitespace: true,
+              message: "Please input name of the recipe",
+            }],
+          })(
+            <Input type="text" />
+          )}
+        </FormItem>
         {formItems}
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
